@@ -1,0 +1,42 @@
+{% extends 'base/layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="header-bar">
+    <h1>Register</h1>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+         {{form|crispy}}
+        <!--<label>{{form.username.label}}</label>
+        {{form.username}}
+
+        <label>{{form.first_name.label}}</label>
+        {{form.first_name}}
+
+        <label>{{form.last_name.label}}</label>
+        {{form.last_name}}
+
+        <label>{{form.email.label}}</label>
+        {{form.email}}
+
+        <label>{{form.password1.label}}</label>
+        {{form.password1}}
+
+        <label>{{form.password2.label}}</label>
+        {{form.password2}}-->
+        {% if field.errors %}
+            <ul style="list-style-type: none; color:red">
+            {% for error in field.errors %}
+            {{form.error}}
+            {% endfor %}
+            </ul>
+        {% endif %}
+        <input style="margin-top:10px ;" class="button" type="submit" value="Register">
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock content %}
