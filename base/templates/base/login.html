@@ -1,0 +1,21 @@
+{% extends 'base/layout.html' %}
+{% load socialaccount %}
+{% providers_media_js %}
+{% block content %}
+<div class="header-bar">
+    <h1>Login</h1>
+</div>
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="button" type="submit" Value="Login">
+    </form>
+</div>
+<h2>Social Login<h2>
+<section data-social>
+  <a href='{% provider_login_url 'facebook' method='oauth2' %}' class="ion-social-facebook"><span>Facebook</span></a>
+  <a href='{% provider_login_url 'google' method='oauth2' %}' class="ion-social-youtube"><span>Google</span></a>
+</section>
+<p>Don't have an Account? <a href='{% url 'register' %}'>Register</a></p>
+{% endblock content %}
